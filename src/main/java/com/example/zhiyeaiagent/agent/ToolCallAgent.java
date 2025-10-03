@@ -80,13 +80,13 @@ public class ToolCallAgent extends ReActAgent {
             // 获取要调用的工具列表
             List<AssistantMessage.ToolCall> toolCallList = assistantMessage.getToolCalls();
             // 输出提示信息
-//            String result = assistantMessage.getText();
-//            log.info(getName() + "的思考：" + result);
-//            log.info(getName() + "选择了 " + toolCallList.size() + " 个工具来使用");
-//            String toolCallInfo = toolCallList.stream()
-//                    .map(toolCall -> String.format("工具名称：%s，参数：%s", toolCall.name(), toolCall.arguments()))
-//                    .collect(Collectors.joining("\n"));
-//            log.info(toolCallInfo);
+            String result = assistantMessage.getText();
+            log.info(getName() + "的思考：" + result);
+            log.info(getName() + "选择了 " + toolCallList.size() + " 个工具来使用");
+            String toolCallInfo = toolCallList.stream()
+                    .map(toolCall -> String.format("工具名称：%s，参数：%s", toolCall.name(), toolCall.arguments()))
+                    .collect(Collectors.joining("\n"));
+            log.info(toolCallInfo);
             // 如果不需要调用工具，返回 false
             if (toolCallList.isEmpty()) {
                 // 只有不调用工具时，才需要手动记录助手消息
@@ -128,7 +128,7 @@ public class ToolCallAgent extends ReActAgent {
             setState(AgentState.FINISHED);
         }
         String results = toolResponseMessage.getResponses().stream()
-                .map(response -> "工具" + response.name() + " 返回的结果：" + response.responseData())
+                .map(response -> response.responseData())
                 .collect(Collectors.joining("\n"));
         log.info(results);
         return results;
