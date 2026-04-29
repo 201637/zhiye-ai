@@ -28,7 +28,7 @@ public class ToolRegistration {
                 webSearchTool,
                 webScrapingTool,
                 resourceDownloadTool,
-                pdfGenerationTool,
+//                pdfGenerationTool,
                 terminateTool
         );
     }
